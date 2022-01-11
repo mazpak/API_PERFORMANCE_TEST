@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "64bbea11-ce6c-4332-a1a5-65fc994ec3a5",
+		"name": "projectGroup4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "filterByMen",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();\r",
+							"\r",
+							"console.log(data.category.id);\r",
+							"var associationsList = data.category.associations.products;\r",
+							"console.log(associationsList);\r",
+							"pm.test(\"Test number of items in Men-collection\", function(){\r",
+							"    pm.expect(associationsList.length).to.be.eq(3);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"followAuthorizationHeader": true,
+				"followOriginalHttpMethod": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/categories/4?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4&output_format=JSON",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categories",
+						"4"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "ws_key",
+							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+						},
+						{
+							"key": "output_format",
+							"value": "JSON"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
