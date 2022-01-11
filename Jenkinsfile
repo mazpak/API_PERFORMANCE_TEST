@@ -2,7 +2,7 @@ pipeline {
     environment {
             PATH = "C:\\WINDOWS\\SYSTEM32;C:\\tools\\Java\\jdk-11.0.2\\bin"
     }
-    agent any
+   agent {    label 'Grupp4JMeter'    }
     
     stages{
         stage('Run Jmeter tests') {
