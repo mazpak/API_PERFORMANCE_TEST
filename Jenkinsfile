@@ -1,6 +1,6 @@
 pipeline {
     environment {
-            PATH = "C:\\WINDOWS\\SYSTEM32;C:\\tools\\Java\\jdk-17.0.1\\bin"
+            PATH = "C:\\WINDOWS\\SYSTEM32;C:\\tools\\Java\\jdk-11.0.2\\bin"
     }
     agent any
     
