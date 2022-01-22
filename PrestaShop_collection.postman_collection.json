@@ -208,16 +208,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var data = pm.response.json();\r",
-							"var associationsList = data.category.associations.products;\r",
-							"\r",
-							"pm.test(\"Test if Id is 4\", function(){\r",
-							"    pm.expect(data.category.id).to.be.eq(5);\r",
-							"})\r",
-							"\r",
-							"pm.test(\"Test number of items in Men-collection\", function(){\r",
-							"    pm.expect(associationsList.length).to.be.eq(1);\r",
-							"})"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -231,22 +222,22 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/categories/5?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4&io_format=JSON",
+					"raw": "{{url}}/search/?schema=blank&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&io_format=JSON",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"categories",
-						"5"
+						"search",
+						""
 					],
 					"query": [
 						{
-							"key": null,
-							"value": null
+							"key": "schema",
+							"value": "blank"
 						},
 						{
 							"key": "ws_key",
-							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+							"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
 						},
 						{
 							"key": "io_format",
@@ -285,7 +276,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<prestashop xmlns:xlink=\"http://www.w3.org/1999/xlink\">\r\n    <customer>        <id_default_group></id_default_group>\r\n           \r\n         <ip_registration_newsletter></ip_registration_newsletter>\r\n        <passwd><![CDATA[{{pwd}}]]> </passwd>\r\n        <lastname><![CDATA[Mandella]]></lastname>\r\n        <firstname><![CDATA[Nelson]]></firstname>\r\n        <email><![CDATA[nelsonmandella@gmail.com]]></email>\r\n       \r\n    </customer>\r\n</prestashop>",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<prestashop xmlns:xlink=\"http://www.w3.org/1999/xlink\">\r\n    <customer>       \r\n        <passwd><![CDATA[12345]]> </passwd>\r\n        <lastname><![CDATA[Mani]]></lastname>\r\n        <firstname><![CDATA[Neli]]></firstname>\r\n        <email><![CDATA[maninei@gmail.com]]></email>\r\n       \r\n    </customer>\r\n</prestashop>",
 					"options": {
 						"raw": {
 							"language": "xml"
@@ -293,134 +284,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/customers/620&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI?pwd=12345",
+					"raw": "{{url}}/customers/&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"customers",
-						"620&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
-					],
-					"query": [
-						{
-							"key": "pwd",
-							"value": "12345"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "CreateAccountByShortPassword",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"\r",
-							"pm.test(\"Test the Status\", function(){\r",
-							"    pm.response.to.have.status(201)\r",
-							"})\r",
-							"console.log(data);\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"followAuthorizationHeader": true,
-				"followOriginalHttpMethod": true
-			},
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<prestashop xmlns:xlink=\"http://www.w3.org/1999/xlink\">\r\n    <customer>      \r\n        <passwd><![CDATA[{{pwd}}]]> </passwd>\r\n        <lastname><![CDATA[Mandella]]></lastname>\r\n        <firstname><![CDATA[Nelson]]></firstname>\r\n        <email><![CDATA[nelsonmandella.gmail.com]]></email>\r\n    </customer>\r\n</prestashop>",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/customers/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"customers",
-						""
-					],
-					"query": [
-						{
-							"key": "pwd",
-							"value": "12345",
-							"disabled": true
-						},
-						{
-							"key": "ws_key",
-							"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
-						},
-						{
-							"key": "io_format",
-							"value": "JSON",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "CreateAccountByExictingEmail",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"\r",
-							"pm.test(\"Test the Status\", function(){\r",
-							"    pm.response.to.have.status(201)\r",
-							"})\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"followAuthorizationHeader": true,
-				"followOriginalHttpMethod": true
-			},
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<prestashop xmlns:xlink=\"http://www.w3.org/1999/xlink\">\r\n    <customer>        <id_default_group></id_default_group>\r\n           \r\n         <ip_registration_newsletter></ip_registration_newsletter>\r\n        <passwd><![CDATA[{{pwd}}]]> </passwd>\r\n        <lastname><![CDATA[Mandella]]></lastname>\r\n        <firstname><![CDATA[Nelson]]></firstname>\r\n        <email><![CDATA[nelsonmandella@gmail.com]]></email>\r\n       \r\n    </customer>\r\n</prestashop>",
-					"options": {
-						"raw": {
-							"language": "xml"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/customers/620&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI?pwd=12345",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"customers",
-						"620&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
-					],
-					"query": [
-						{
-							"key": "pwd",
-							"value": "12345"
-						}
+						"&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
 					]
 				}
 			},
@@ -462,24 +332,15 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/customers/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI",
+					"raw": "{{url}}/customers/&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"customers",
-						""
+						"&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
 					],
 					"query": [
-						{
-							"key": "pwd",
-							"value": "12345",
-							"disabled": true
-						},
-						{
-							"key": "ws_key",
-							"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
-						},
 						{
 							"key": "io_format",
 							"value": "JSON",
@@ -489,6 +350,134 @@
 							"key": "schema",
 							"value": "blank",
 							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAccountByShortPassword",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = xml2Json(responseBody);\r",
+							"pm.test(\"The password is too short then Status should be 400\", function(){\r",
+							"    pm.response.to.have.status(400)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Expected that error message not be undefined\" , function(){\r",
+							"    pm.expect(data['prestashop']['errors']).to.not.eq(undefined)})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"followAuthorizationHeader": true,
+				"followOriginalHttpMethod": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "mnilsson@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<prestashop xmlns:xlink=\"http://www.w3.org/1999/xlink\">\r\n    <customer>      \r\n        <passwd><![CDATA[{{shortPwd}}]]> </passwd>\r\n        <lastname><![CDATA[Mandella]]></lastname>\r\n        <firstname><![CDATA[Nelson]]></firstname>\r\n        <email><![CDATA[nelsonmandella@gmail.com]]></email>\r\n    </customer>\r\n</prestashop>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/customers/&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"customers",
+						"&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+					],
+					"query": [
+						{
+							"key": "io_format",
+							"value": "JSON",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAccountByExictingEmail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"var data = xml2Json(responseBody);\r",
+							"pm.test(\"Test the Status: 400 Bad Request\", function(){\r",
+							"    pm.response.to.have.status(400)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Expected t print the error message \", function(){\r",
+							"    pm.expect(data['prestashop']['errors']).to.not.eq(undefined)})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": true,
+				"followOriginalHttpMethod": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<prestashop xmlns:xlink=\"http://www.w3.org/1999/xlink\">\r\n    <customer>        \r\n           \r\n         <ip_registration_newsletter></ip_registration_newsletter>\r\n        <passwd><![CDATA[{{pwd}}]]> </passwd>\r\n        <lastname><![CDATA[Mandella]]></lastname>\r\n        <firstname><![CDATA[Nelson]]></firstname>\r\n        <email><![CDATA[nelsonmandella@gmail.com]]></email>\r\n       \r\n    </customer>\r\n</prestashop>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/customers/&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI?pwd=12345",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"customers",
+						"&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+					],
+					"query": [
+						{
+							"key": "pwd",
+							"value": "12345"
 						}
 					]
 				}
