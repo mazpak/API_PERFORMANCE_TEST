@@ -6,7 +6,119 @@
 	},
 	"item": [
 		{
-			"name": "filterByMen",
+			"name": "FilterByMen",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();\r",
+							"var associationsList = data.category.associations.products;\r",
+							"\r",
+							"pm.test(\"Test if Id is 4\", function(){\r",
+							"    pm.expect(data.category.id).to.be.eq(4);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Test number of items in Men-collection\", function(){\r",
+							"    pm.expect(associationsList.length).to.be.eq(3);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": true,
+				"followOriginalHttpMethod": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/categories/4?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4&io_format=JSON",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categories",
+						"4"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "ws_key",
+							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+						},
+						{
+							"key": "io_format",
+							"value": "JSON"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FilterByWomen",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();\r",
+							"var associationsList = data.category.associations.products;\r",
+							"\r",
+							"pm.test(\"Test if Id is 4\", function(){\r",
+							"    pm.expect(data.category.id).to.be.eq(5);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Test number of items in Men-collection\", function(){\r",
+							"    pm.expect(associationsList.length).to.be.eq(1);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": true,
+				"followOriginalHttpMethod": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/categories/5?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4&io_format=JSON",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categories",
+						"5"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "ws_key",
+							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
+						},
+						{
+							"key": "io_format",
+							"value": "JSON"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CheckTheNrOfLanguages",
 			"event": [
 				{
 					"listen": "test",
@@ -14,11 +126,45 @@
 						"exec": [
 							"var data = pm.response.json();\r",
 							"\r",
-							"console.log(data.category.id);\r",
-							"var associationsList = data.category.associations.products;\r",
-							"console.log(associationsList);\r",
-							"pm.test(\"Test number of items in Men-collection\", function(){\r",
-							"    pm.expect(associationsList.length).to.be.eq(3);\r",
+							"pm.test(\"Test if there is only one language \", function(){\r",
+							"    pm.expect(data.languages.length).to.be.eq(1);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": true,
+				"followOriginalHttpMethod": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/languages/&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&io_format=JSON",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"languages",
+						"&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&io_format=JSON"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CheckTheLanguage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Test if the la is English\", function(){\r",
+							"    pm.expect(data.language.name).to.be.eq(\"English (English)\");\r",
 							"})"
 						],
 						"type": "text/javascript"
@@ -43,13 +189,55 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/categories/4?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4&output_format=JSON",
+					"raw": "{{url}}/languages/1&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&io_format=JSON",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"languages",
+						"1&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI&io_format=JSON"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FilterByPrice Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();\r",
+							"var associationsList = data.category.associations.products;\r",
+							"\r",
+							"pm.test(\"Test if Id is 4\", function(){\r",
+							"    pm.expect(data.category.id).to.be.eq(5);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Test number of items in Men-collection\", function(){\r",
+							"    pm.expect(associationsList.length).to.be.eq(1);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": true,
+				"followOriginalHttpMethod": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/categories/5?&ws_key=UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4&io_format=JSON",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"categories",
-						"4"
+						"5"
 					],
 					"query": [
 						{
@@ -61,8 +249,246 @@
 							"value": "UDUFEDTTKQXMN79WKY6QWFP48L9BMZM4"
 						},
 						{
-							"key": "output_format",
+							"key": "io_format",
 							"value": "JSON"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAccountByValidData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"Test the Status\", function(){\r",
+							"    pm.response.to.have.status(201)\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": true,
+				"followOriginalHttpMethod": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<prestashop xmlns:xlink=\"http://www.w3.org/1999/xlink\">\r\n    <customer>        <id_default_group></id_default_group>\r\n           \r\n         <ip_registration_newsletter></ip_registration_newsletter>\r\n        <passwd><![CDATA[{{pwd}}]]> </passwd>\r\n        <lastname><![CDATA[Mandella]]></lastname>\r\n        <firstname><![CDATA[Nelson]]></firstname>\r\n        <email><![CDATA[nelsonmandella@gmail.com]]></email>\r\n       \r\n    </customer>\r\n</prestashop>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/customers/620&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI?pwd=12345",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"customers",
+						"620&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+					],
+					"query": [
+						{
+							"key": "pwd",
+							"value": "12345"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAccountByShortPassword",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Test the Status\", function(){\r",
+							"    pm.response.to.have.status(201)\r",
+							"})\r",
+							"console.log(data);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": true,
+				"followOriginalHttpMethod": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<prestashop xmlns:xlink=\"http://www.w3.org/1999/xlink\">\r\n    <customer>      \r\n        <passwd><![CDATA[{{pwd}}]]> </passwd>\r\n        <lastname><![CDATA[Mandella]]></lastname>\r\n        <firstname><![CDATA[Nelson]]></firstname>\r\n        <email><![CDATA[nelsonmandella.gmail.com]]></email>\r\n    </customer>\r\n</prestashop>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/customers/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"customers",
+						""
+					],
+					"query": [
+						{
+							"key": "pwd",
+							"value": "12345",
+							"disabled": true
+						},
+						{
+							"key": "ws_key",
+							"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+						},
+						{
+							"key": "io_format",
+							"value": "JSON",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAccountByExictingEmail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Test the Status\", function(){\r",
+							"    pm.response.to.have.status(201)\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": true,
+				"followOriginalHttpMethod": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<prestashop xmlns:xlink=\"http://www.w3.org/1999/xlink\">\r\n    <customer>        <id_default_group></id_default_group>\r\n           \r\n         <ip_registration_newsletter></ip_registration_newsletter>\r\n        <passwd><![CDATA[{{pwd}}]]> </passwd>\r\n        <lastname><![CDATA[Mandella]]></lastname>\r\n        <firstname><![CDATA[Nelson]]></firstname>\r\n        <email><![CDATA[nelsonmandella@gmail.com]]></email>\r\n       \r\n    </customer>\r\n</prestashop>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/customers/620&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI?pwd=12345",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"customers",
+						"620&ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+					],
+					"query": [
+						{
+							"key": "pwd",
+							"value": "12345"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAccountByEmailWithoutAttSign",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = xml2Json(responseBody);\r",
+							"pm.test(\"Test the Status: 400 Bad Request\", function(){\r",
+							"    pm.response.to.have.status(400)\r",
+							"})\r",
+							"pm.test(\"Test the error message: email is not valid\", function(){\r",
+							"    pm.expect(data['prestashop']['errors']['error']['message']).to.eq('Validation error: \"Property Customer->email is not valid\"')})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": true,
+				"followOriginalHttpMethod": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<prestashop xmlns:xlink=\"http://www.w3.org/1999/xlink\">\r\n    <customer>      \r\n        <passwd><![CDATA[{{pwd}}]]> </passwd>\r\n        <lastname><![CDATA[Mandella]]></lastname>\r\n        <firstname><![CDATA[Nelson]]></firstname>\r\n        <email><![CDATA[nelsonmandella.gmail.com]]></email>\r\n    </customer>\r\n</prestashop>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/customers/?ws_key=U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"customers",
+						""
+					],
+					"query": [
+						{
+							"key": "pwd",
+							"value": "12345",
+							"disabled": true
+						},
+						{
+							"key": "ws_key",
+							"value": "U5IMJ4DUI4QRTMCVAJT9D1UDPTJVGTHI"
+						},
+						{
+							"key": "io_format",
+							"value": "JSON",
+							"disabled": true
+						},
+						{
+							"key": "schema",
+							"value": "blank",
+							"disabled": true
 						}
 					]
 				}
